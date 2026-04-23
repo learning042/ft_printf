@@ -6,7 +6,7 @@
 /*   By: tpinto-v <tpinto-v@student.42lisb...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 18:51:09 by tpinto-v          #+#    #+#             */
-/*   Updated: 2026/04/22 19:10:37 by tpinto-v         ###   ########.fr       */
+/*   Updated: 2026/04/23 18:15:29 by tpinto-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static size_t	ft_strlen(char *str)
 	return (len);
 }
 
-void	ft_putstr(char *s)
+size_t	ft_putstr(char *s)
 {
 	write(1, s, ft_strlen(s));
+	return (1);
 }
