@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
@@ -16,7 +17,16 @@ int	main(void)
 	int	*b = &a;
 	char *s = "oi";
 
-	ft_printf("hello %u hello  hello%p%s %%", -1, b, s);
+	int	c = ft_printf("hello %u hello  hello%p%s %%\n", -1, b, s);
+	ft_printf("%i\n", c);
+
+	int d = printf("hello %u hello  hello%p%s %%\n", -1, b, s);
+	printf("%i\n", d);
+	printf(" NULL %s NULL ", NULL);
+	printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
+	ft_printf(" %p %p ", ULONG_MAX, -ULONG_MAX);
+	printf(" %p %p ", 0, 0);
+	ft_printf(" %p %p ", 0, 0);
 	//printf("hello %i hello %p  hello", a, b);
 	//ft_putnbr_base((long) b, "0123456789abcdef");
 	// printf("hello%");

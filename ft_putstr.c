@@ -6,15 +6,15 @@
 /*   By: tpinto-v <tpinto-v@student.42lisb...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 18:51:09 by tpinto-v          #+#    #+#             */
-/*   Updated: 2026/04/23 18:15:29 by tpinto-v         ###   ########.fr       */
+/*   Updated: 2026/04/23 20:59:03 by tpinto-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	while (str[len])
@@ -22,8 +22,18 @@ static size_t	ft_strlen(char *str)
 	return (len);
 }
 
-size_t	ft_putstr(char *s)
+void	ft_putstr(char *s, int *count)
 {
-	write(1, s, ft_strlen(s));
-	return (1);
+	int	len;
+
+	if (s == NULL)
+	{
+		len = ft_strlen("(null)");
+		write(1, "(null)", len);
+		*count += len;
+		return ;
+	}
+	len = ft_strlen(s);
+	write(1, s, len);
+	*count += len;
 }
