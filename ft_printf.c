@@ -5,47 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpinto-v <tpinto-v@student.42lisb...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/22 19:12:43 by tpinto-v          #+#    #+#             */
-/*   Updated: 2026/04/23 22:28:49 by tpinto-v         ###   ########.fr       */
+/*   Created: 2026/04/27 15:17:45 by tpinto-v          #+#    #+#             */
+/*   Updated: 2026/04/27 16:30:25 by tpinto-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static void	ft_display_formatted(char specifier, va_list displayed, int *count)
+{
+	if (specifier == 'c')
+		ft_putchar((char) va_arg(displayed, int), count);
+	else if (specifier == 's')
+		ft_putstr(va_arg(displayed, char *), count);
+	else if (specifier == 'p')
+		ft_putptr((unsigned long) va_arg(displayed, void *), HEXBASELOW, count);
+	else if (specifier == 'i' || specifier == 'd')
+		ft_putsign(va_arg(displayed, int), DECBASE, count);
+	else if (specifier == 'u')
+		ft_putuns(va_arg(displayed, unsigned int), DECBASE, count);
+	else if (specifier == 'x')
+		ft_putuns(va_arg(displayed, unsigned int), HEXBASELOW, count);
+	else if (specifier == 'X')
+		ft_putuns(va_arg(displayed, unsigned int), HEXBASEUPP, count);
+	else if (specifier == '%')
+		ft_putchar('%', count);
+	else
+		*count = -1;
+}
+
 int	ft_printf(const char *s, ...)
 {
-	va_list args;
-	va_start(args, s);
+	va_list	args;
 	int		i;
 	int		*count;
 
+	if (s == NULL)
+		return (-1);
+	va_start(args, s);
 	i = 0;
 	count = &i;
 	while (*s)
 	{
 		if (*s == '%')
 		{
-			if (s[1] == 'c')
-				ft_putchar((char) va_arg(args, int), count);
-			else if (s[1] == 's')
-				ft_putstr(va_arg(args, char *), count);
-			else if (s[1] == 'p')
-			{
-				ft_putstr("0x", count);
-				ft_putnbr_base((unsigned long) va_arg(args, void *), "0123456789abcdef", count);
-			}
-			else if (s[1] == 'i' || s[1] == 'd')
-				ft_putnbr_base_i((int) va_arg(args, int), "0123456789", count);
-			else if (s[1] == 'u')
-				ft_putnbr_base(va_arg(args, unsigned int), "0123456789", count);
-			else if (s[1] == 'x')
-				ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef", count);
-			else if (s[1] == 'X')
-				ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF", count);
-			else if (s[1] == '%')
-				ft_putchar('%', count);
+			ft_display_formatted(s[1], args, count);
+			if (*count == -1)
+				break ;
 			s += 2;
-			continue;
+			continue ;
 		}
 		ft_putchar(*s, count);
 		++s;

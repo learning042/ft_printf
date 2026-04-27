@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_aux_numptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpinto-v <tpinto-v@student.42lisb...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/22 19:41:06 by tpinto-v          #+#    #+#             */
-/*   Updated: 2026/04/23 21:17:26 by tpinto-v         ###   ########.fr       */
+/*   Created: 2026/04/27 15:03:27 by tpinto-v          #+#    #+#             */
+/*   Updated: 2026/04/27 17:35:17 by tpinto-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,36 @@ static size_t	ft_strlen(char *s)
 	return (len);
 }
 
-static void	ft_putnbr_base_recursive(long long n, char *base, long long len_base, int *count)
+void	ft_putnbr_base(unsigned long n, char *base, size_t lbase, int *count)
 {
-	if (n < len_base)
+	if (n < lbase)
 	{
 		ft_putchar(base[n], count);
 		return ;
 	}
-	ft_putnbr_base_recursive(n / len_base, base, len_base, count);
-	ft_putnbr_base_recursive(n % len_base, base, len_base, count);
+	ft_putnbr_base(n / lbase, base, lbase, count);
+	ft_putnbr_base(n % lbase, base, lbase, count);
 }
 
-void	ft_putnbr_base(long long n, char *base, int *count)
+void	ft_putsign(long n, char *base, int *count)
 {
-	size_t	len_base;
-
-	len_base = ft_strlen(base);
 	if (n < 0)
 	{
 		ft_putchar('-', count);
 		n *= -1;
 	}
-	ft_putnbr_base_recursive(n, base, len_base, count);
+	ft_putnbr_base(n, base, ft_strlen(base), count);
 }
 
-void	ft_putnbr_base_i(int n, char *base, int *count)
+void	ft_putuns(unsigned long n, char *base, int *count)
 {
-	ft_putnbr_base((int) n, base, count);
+	ft_putnbr_base(n, base, ft_strlen(base), count);
+}
+
+void	ft_putptr(unsigned long n, char *base, int *count)
+{
+	if (n == 0)
+		return (ft_putstr("(nil)", count));
+	ft_putstr("0x", count);
+	ft_putuns(n, base, count);
 }

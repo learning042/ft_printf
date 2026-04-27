@@ -3,31 +3,61 @@
 
 int	main(void)
 {
-	// printf("hello%i");
-	//int	x = 10;
-	//int	*ptr = &x;
-	//char	*s = "hello";
-	//printf("%p\n", ptr);
-	//ft_putnbr_base((long) ptr, "0123456789abcdef");
-	//printf("%i\n", printf("\n%s\n", s));
-	//printf("%i\n", printf("%i\n", x));
-	//printf("%i\n", printf("%p\n", ptr));
-	//ft_putstr("hello\n");
-	int	a = 505;
-	int	*b = &a;
-	char *s = "oi";
 
-	int	c = ft_printf("hello %u hello  hello%p%s %%\n", -1, b, s);
-	ft_printf("%i\n", c);
+	// error
+	printf("%i\n", printf(NULL));
+	ft_printf("%i\n", ft_printf(NULL));
+	
+	// %c
+	printf("%i\n", printf("hello %c%c hello\n", '4', '2'));
+	ft_printf("%i\n", ft_printf("hello %c%c hello\n", '4', '2'));
 
-	int d = printf("hello %u hello  hello%p%s %%\n", -1, b, s);
-	printf("%i\n", d);
-	printf(" NULL %s NULL ", NULL);
-	printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
-	ft_printf(" %p %p ", ULONG_MAX, -ULONG_MAX);
-	printf(" %p %p ", 0, 0);
-	ft_printf(" %p %p ", 0, 0);
-	//printf("hello %i hello %p  hello", a, b);
-	//ft_putnbr_base((long) b, "0123456789abcdef");
-	// printf("hello%");
+	// %s
+	printf("%i\n", printf("hello %s hello\n", "42"));
+	ft_printf("%i\n", ft_printf("hello %s hello\n", "42"));
+
+	// %p
+	int i = 5;
+	printf("%i\n", printf("address %p address", &i));
+	ft_printf("%i\n", ft_printf("address %p address", &i)); 
+
+	// %d / %i
+	printf("%i\n", printf("hello %d%i hello\n", 42, 42));
+	ft_printf("%i\n", ft_printf("hello %d%i hello\n", 42, 42));
+
+	printf("%i\n", printf("hello %i %d hello\n", INT_MIN, INT_MAX));
+	ft_printf("%i\n", ft_printf("hello %i %d hello\n", INT_MIN, INT_MAX));
+	
+	printf("%i\n", printf("hello %i %d hello\n", 0, UINT_MAX));
+	ft_printf("%i\n", printf("hello %i %d hello\n", 0, UINT_MAX));
+	// %u
+	printf("%i\n", printf("hello %u hello\n", 42));
+	ft_printf("%i\n", ft_printf("hello %u hello\n", 42));
+
+	printf("%i\n", printf("hello %u %u hello\n", INT_MIN, INT_MAX));
+	ft_printf("%i\n", ft_printf("hello %u %u hello\n", INT_MIN, INT_MAX));
+	
+	printf("%i\n", printf("hello %u %u hello\n", 0, UINT_MAX));
+	ft_printf("%i\n", ft_printf("hello %u %u hello\n", 0, UINT_MAX));
+
+	// %x / %X
+	printf("%i\n", printf("hello %x %X", 42, 42));
+	ft_printf("%i\n", ft_printf("hello %x %X", 42, 42));
+
+	printf("%i\n", printf("hello %x %X hello\n", 0, UINT_MAX));
+	ft_printf("%i\n", ft_printf("hello %x %X hello\n", 0, UINT_MAX));
+	
+	printf("%i\n", printf("hello %x %X hello\n", INT_MIN, INT_MAX));
+	ft_printf("%i\n", ft_printf("hello %x %X hello\n", INT_MIN, INT_MAX));
+	
+	// undef behavior
+	printf("%i\n", printf("%p %p\n", NULL, NULL));
+	ft_printf("%i\n", ft_printf("%p %p\n", NULL, NULL));
+
+	//printf("%i\n", printf("%s %s\n", NULL, NULL));
+	ft_printf("%i\n", ft_printf("%s %s\n", NULL, NULL));
+
+	//printf("%i\n", printf("hello\n%"));
+	ft_printf("%i\n", ft_printf("hello\n%"));
+	return (0);
 }
