@@ -48,10 +48,10 @@ void	ft_putuns(unsigned long n, char *base, int *count)
 	ft_putnbr_base(n, base, ft_strlen(base), count);
 }
 
-void	ft_putptr(unsigned long n, char *base, int *count)
+void	ft_putptr(unsigned long n, int *count)
 {
 	if (n == 0)
 		return (ft_putstr("(nil)", count));
 	ft_putstr("0x", count);
-	ft_putuns(n, base, count);
+	ft_putuns(n, HEXBASELOW, count);
 }

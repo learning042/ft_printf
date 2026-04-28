@@ -25,6 +25,6 @@ void	ft_putchar(char c, int *count);
 void	ft_putstr(char *s, int *count);
 void	ft_putuns(unsigned long n, char *base, int *count);
 void	ft_putsign(long n, char *base, int *count);
-void	ft_putptr(unsigned long n, char *base, int *count);
+void	ft_putptr(unsigned long n, int *count);
 int		ft_printf(const char *s, ...);
 #endif
