@@ -27,7 +27,7 @@ Functions | Description | Format specifiers that use it
 `void   ft_putchar(char c, int *count);` | Prints the character `c` |  `%c` `%%`
 `void	ft_putstr(char *s, int *count);` | Prints the string pointer by `s`  | `%s`
 `void	ft_putnbr_base(unsigned long n, char *base, size_t lbase, int *count);` | It is used for printing the number without sign for the next functions in the given base. | Used in the next functions
-`void	ft_putsign(long n, char *base, int *count);` | Prints a signed long in a given base.| `%i` `%d` `%x` `X`
+`void	ft_putsign(long n, char *base, int *count);` | Prints a signed long in a given base.| `%i` `%d` `%x` `%X`
 `void	ft_putuns(unsigned long n, char *base, int *count);` | Prints an unsigned long in a given base.| `%u`
 `void	ft_putptr(unsigned long n, int *count);` | Prints the number `n` in hexadecimal with `0x` on the beginning for being in the pointer format. | `%p`
 
